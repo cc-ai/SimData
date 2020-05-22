@@ -5,17 +5,17 @@ About our simulated world, how to read depth maps,  make segmentation labels mat
 
 Our simulated world datasets can be found on the Mila cluster in `/network/tmp1/ccai/data/munit_dataset/simdata/`. 
 There are several datasets available: 
-- `Unity11K_R`
-- `Unity1000R_fL`
--  `Unity1000R_fL_lowRes`
-- `Unity1000R_fL_lowRes_plus1m`
+- `Unity1000R_fL` : 1000 unique viewpoints, with flood height ~ 50 cm, resolution : (2560 * 1440)
+- `Unity11K_R` : augmented version of the above dataset. For each viewpoint, 11 images were taken, slightly moving the camera up-down-left-right
+-  `Unity1000R_fL_lowRes` : `Unity1000R_fL` dataset in lower resolution (1200*900)
+- `Unity1000R_fL_lowRes_plus1m` : same as above dataset but with water height ~1.5 m 
 
 The data from the simulator provides for each snapshot of the world: 
 - Original image (non-flooded)
 - Flooded image 
 - Binary mask of the area of the flood
 - Depth image
-- Semantic segmentation image
+- Semantic segmentation image : for both flooded and non-flooded scenario. Typically non-flooded semantic segmentation maps will have name '0100.png' and flooded ones '0100w.png'
 - json file with camera parameters
 
 
@@ -58,6 +58,7 @@ The following table provides the correspondence between classes and colors:
 |Person| Not in the dataset for now| | | 11, 12
 
  <!--- Note: figure out the Tree labels, since this may introduce noise in the training --->
+Even though some categories are not yet included in the simulated dataset, we choose specific colors to represent them in order to convert segmentation maps obtained with 19-class cityscapes to our simulated dataset labels. 
 
 ### JSON files
 
